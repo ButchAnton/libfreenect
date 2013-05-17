@@ -35,10 +35,10 @@
 
 FN_INTERNAL int fnusb_num_devices(fnusb_ctx *ctx)
 {
-	libusb_device **devs; 
-	//pointer to pointer of device, used to retrieve a list of devices	
-	ssize_t cnt = libusb_get_device_list (ctx->ctx, &devs); 
-	//get the list of devices	
+	libusb_device **devs;
+	//pointer to pointer of device, used to retrieve a list of devices
+	ssize_t cnt = libusb_get_device_list (ctx->ctx, &devs);
+	//get the list of devices
 	if (cnt < 0)
 		return (-1);
 	int nr = 0, i = 0;
@@ -201,7 +201,7 @@ FN_INTERNAL int fnusb_open_subdevices(freenect_device *dev, int index)
 					break;
 				}
 				if(desc.idProduct == PID_K4W_CAMERA || desc.bcdDevice != fn_le32(267)){
-					/* Not the old kinect so we only set up the camera*/ 
+					/* Not the old kinect so we only set up the camera*/
 					ctx->enabled_subdevices = FREENECT_DEVICE_CAMERA;
 					ctx->zero_plane_res = 334;
 				}else{
@@ -234,11 +234,11 @@ FN_INTERNAL int fnusb_open_subdevices(freenect_device *dev, int index)
 			}
 		}
 	}
-	
-	if(ctx->enabled_subdevices = FREENECT_DEVICE_CAMERA || res < 0) cnt = 0;
-	
+
+	if(ctx->enabled_subdevices == FREENECT_DEVICE_CAMERA || res < 0) cnt = 0;
+
 		// Search for the motor
-	
+
 	for (i = 0; i < cnt; i++) {
 		int r = libusb_get_device_descriptor (devs[i], &desc);
 		if (r < 0)
